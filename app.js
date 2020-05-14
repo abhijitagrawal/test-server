@@ -16,10 +16,11 @@ var jsonParser = bodyParser.json()
 //   res.send('welcome, ' + req.body.username)
 // })
 
-app.use(express.static(path.join(__dirname, "./dist/drapp")));
+app.use(express.static(path.resolve("dist/drapp")));
 
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname,"./dist/drapp/index.html"));
+app.get('/', function (req, res) {
+  app.use(express.static(path.resolve("")));
+  res.sendFile(path.resolve("dist/drapp/index.html"));
 });
 
 
@@ -28,12 +29,12 @@ app.post('/api/users', jsonParser, function (req, res) {
   // create user in req.body
 })
 // app.get('/', (req, res) => res.json({text : 'Hello World!'}))
-app.post('/login', jsonParser, function(req, res){
-    if(req.body.username == "abhijit" && req.body.password == "password"){
-        res.json({code: 200, data: req.body, message: "Login Success!"})
-    }else{
-        res.json({code: 201, message: "Login Error!"})
-    }
+app.post('/login', jsonParser, function (req, res) {
+  if (req.body.username == "abhijit" && req.body.password == "password") {
+    res.json({ code: 200, data: req.body, message: "Login Success!" })
+  } else {
+    res.json({ code: 201, message: "Login Error!" })
+  }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

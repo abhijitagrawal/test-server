@@ -16,7 +16,7 @@ var jsonParser = bodyParser.json()
 //   res.send('welcome, ' + req.body.username)
 // })
 
-app.use(express.static(path.join(__dirname, "./dist")));
+app.use(express.static(path.join(__dirname, "./dist/drapp")));
 
 app.get('/',function(req,res){
   res.sendFile(path.join(__dirname,"./dist/drapp/index.html"));
